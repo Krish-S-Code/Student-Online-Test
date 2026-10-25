@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Account | Student Online Test</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg: #090b16;
+            --card: #151729;
+            --input: #0d1020;
+            --border: #30334c;
+            --purple: #a78bfa;
+            --cyan: #22d3ee;
+            --text: #f5f3ff;
+            --muted: #a1a1b5;
+        }
+
+        body {
+            min-height: 100vh;
+            padding: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: "Segoe UI", Arial, sans-serif;
+            color: var(--text);
+            background:
+                radial-gradient(ellipse at 10% 10%, #49258b45, transparent 45%),
+                radial-gradient(ellipse at 90% 90%, #07598540, transparent 45%),
+                var(--bg);
+        }
+
+        .layout {
+            width: 100%;
+            max-width: 950px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            overflow: hidden;
+            border: 1px solid #ffffff16;
+            border-radius: 24px;
+            background: #151729ed;
+            box-shadow: 0 28px 90px #0007;
+        }
+
+        /* Left welcome panel */
+
+        .welcome {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 42px;
+            overflow: hidden;
+            background:
+                radial-gradient(circle at 15% 15%, #8b5cf640, transparent 45%),
+                linear-gradient(145deg, #21183e, #111a30);
+            border-right: 1px solid #ffffff12;
+        }
+
+        .welcome::after {
+            content: "";
+            position: absolute;
+            width: 230px;
+            height: 230px;
+            right: -100px;
+            bottom: 50px;
+            border: 1px solid #22d3ee30;
+            border-radius: 50%;
+            box-shadow: 0 0 0 30px #22d3ee08,
+                        0 0 0 60px #22d3ee05;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo {
+            width: 45px;
+            height: 45px;
+            display: grid;
+            place-items: center;
+            flex-shrink: 0;
+            border-radius: 14px;
+            color: white;
+            font-size: 22px;
+            font-weight: 800;
+            background: linear-gradient(135deg, #8b5cf6, #06b6d4);
+            box-shadow: 0 8px 25px #8b5cf633;
+        }
+
+        .brand-name {
+            font-size: 17px;
+            font-weight: 750;
+        }
+
+        .brand-name span {
+            color: var(--cyan);
+        }
+
+        .welcome-content {
+            position: relative;
+            z-index: 1;
+            margin: 60px 0;
+        }
+
+        .eyebrow {
+            display: inline-block;
+            padding: 7px 11px;
+            margin-bottom: 20px;
+            border: 1px solid #a78bfa40;
+            border-radius: 30px;
+            color: #c4b5fd;
+            background: #8b5cf615;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 1.2px;
+            text-transform: uppercase;
+        }
+
+        .welcome h2 {
+            max-width: 350px;
+            margin-bottom: 18px;
+            font-size: clamp(30px, 4vw, 43px);
+            line-height: 1.15;
+            letter-spacing: -1.5px;
+        }
+
+        .welcome h2 span {
+            color: var(--cyan);
+        }
+
+        .welcome-content p {
+            max-width: 330px;
+            color: #b3b5ca;
+            font-size: 14px;
+            line-height: 1.9;
+        }
+
+        .features {
+            display: grid;
+            gap: 15px;
+            margin-top: 30px;
+        }
+
+        .feature {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: #d9d9ea;
+            font-size: 13px;
+        }
+
+        .feature-icon {
+            width: 32px;
+            height: 32px;
+            display: grid;
+            place-items: center;
+            border: 1px solid #ffffff15;
+            border-radius: 10px;
+            color: var(--cyan);
+            background: #ffffff08;
+        }
+
+        .welcome-footer {
+            position: relative;
+            z-index: 1;
+            color: #777991;
+            font-size: 11px;
+        }
+
+        /* Registration form */
+
+        .form-panel {
+            padding: 42px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .form-heading {
+            margin-bottom: 28px;
+        }
+
+        .form-heading h1 {
+            margin-bottom: 9px;
+            font-size: 28px;
+            letter-spacing: -0.7px;
+        }
+
+        .form-heading p {
+            color: var(--muted);
+            font-size: 13px;
+            line-height: 1.7;
+        }
+
+        .field {
+            margin-bottom: 19px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 9px;
+            color: #deddf0;
+            font-size: 12px;
+            font-weight: 650;
+        }
+
+        .input-wrap {
+            position: relative;
+        }
+
+        input {
+            width: 100%;
+            padding: 14px;
+            border: 1px solid var(--border);
+            border-radius: 11px;
+            outline: none;
+            color: white;
+            background: var(--input);
+            font: inherit;
+            font-size: 13px;
+            transition: border-color .2s, box-shadow .2s;
+        }
+
+        input::placeholder {
+            color: #73758d;
+        }
+
+        input:focus {
+            border-color: var(--purple);
+            box-shadow: 0 0 0 3px #8b5cf622;
+        }
+
+        .password-input {
+            padding-right: 70px;
+        }
+
+        .toggle-password {
+            position: absolute;
+            top: 50%;
+            right: 13px;
+            transform: translateY(-50%);
+            padding: 5px;
+            border: none;
+            color: var(--cyan);
+            background: transparent;
+            font-size: 12px;
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+        .hint {
+            margin-top: 7px;
+            color: #85869d;
+            font-size: 11px;
+        }
+
+        .register-btn {
+            width: 100%;
+            margin-top: 5px;
+            padding: 15px;
+            border: none;
+            border-radius: 11px;
+            color: white;
+            background: linear-gradient(100deg, #7c3aed, #4f46e5 60%, #0891b2);
+            box-shadow: 0 8px 25px #7c3aed30;
+            font-size: 14px;
+            font-weight: 750;
+            cursor: pointer;
+            transition: transform .2s, filter .2s;
+        }
+
+        .register-btn:hover {
+            transform: translateY(-2px);
+            filter: brightness(1.12);
+        }
+
+        .register-btn:focus-visible,
+        .toggle-password:focus-visible,
+        a:focus-visible {
+            outline: 2px solid var(--cyan);
+            outline-offset: 4px;
+        }
+
+        .login-text {
+            margin-top: 25px;
+            text-align: center;
+            color: var(--muted);
+            font-size: 12px;
+        }
+
+        a {
+            color: #c4b5fd;
+            font-weight: 700;
+            text-decoration: none;
+        }
+
+        a:hover {
+            color: var(--cyan);
+            text-decoration: underline;
+        }
+
+        .mobile-footer {
+            display: none;
+            margin-top: 25px;
+            text-align: center;
+            color: #656780;
+            font-size: 11px;
+        }
+
+        @media (max-width: 720px) {
+            .layout {
+                max-width: 470px;
+                grid-template-columns: 1fr;
+            }
+
+            .welcome {
+                padding: 25px 28px;
+                border-right: none;
+                border-bottom: 1px solid #ffffff12;
+            }
+
+            .welcome-content {
+                margin: 30px 0 10px;
+            }
+
+            .welcome h2 {
+                font-size: 29px;
+            }
+
+            .welcome-content p {
+                font-size: 13px;
+            }
+
+            .features,
+            .welcome-footer {
+                display: none;
+            }
+
+            .form-panel {
+                padding: 30px 28px;
+            }
+
+            .mobile-footer {
+                display: block;
+            }
+        }
+
+        @media (max-width: 380px) {
+            body {
+                padding: 12px;
+            }
+
+            .welcome,
+            .form-panel {
+                padding: 23px 20px;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            *,
+            *::before,
+            *::after {
+                transition: none !important;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <main class="layout">
+
+        <section class="welcome">
+            <div class="brand">
+                <div class="logo">S</div>
+                <div class="brand-name">
+                    Student <span>Online Test</span>
+                </div>
+            </div>
+
+            <div class="welcome-content">
+                <span class="eyebrow">Your next chapter</span>
+
+                <h2>
+                    Learn more.<br>
+                    Achieve <span>more.</span>
+                </h2>
+
+                <p>
+                    Create your student account to access online tests,
+                    check your scores, and follow your academic progress.
+                </p>
+
+                <div class="features">
+                    <div class="feature">
+                        <span class="feature-icon">✓</span>
+                        <span>Access your online tests</span>
+                    </div>
+
+                    <div class="feature">
+                        <span class="feature-icon">↗</span>
+                        <span>Track your test results</span>
+                    </div>
+
+                    <div class="feature">
+                        <span class="feature-icon">◎</span>
+                        <span>Keep your learning organized</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="welcome-footer">
+                Student Online Test &copy; 2026
+            </div>
+        </section>
+
+        <section class="form-panel">
+            <div class="form-heading">
+                <h1>Create account</h1>
+                <p>Fill in your details to get started.</p>
+            </div>
+
+            <form action="register" method="post">
+                <div class="field">
+                    <label for="name">Full name</label>
+                    <input
+                        type="text"
+                        id="name"
+                        name="name"
+                        placeholder="Enter your full name"
+                        autocomplete="name"
+                        required>
+                </div>
+
+                <div class="field">
+                    <label for="email">Email address</label>
+                    <input
+                        type="email"
+                        id="email"
+                        name="email"
+                        placeholder="you@example.com"
+                        autocomplete="email"
+                        required>
+                </div>
+
+                <div class="field">
+                    <label for="password">Create password</label>
+
+                    <div class="input-wrap">
+                        <input
+                            class="password-input"
+                            type="password"
+                            id="password"
+                            name="password"
+                            placeholder="Minimum 8 characters"
+                            minlength="8"
+                            autocomplete="new-password"
+                            required>
+
+                        <button
+                            class="toggle-password"
+                            type="button"
+                            id="togglePassword"
+                            aria-controls="password"
+                            aria-pressed="false">
+                            Show
+                        </button>
+                    </div>
+
+                    <p class="hint">Use at least 8 characters.</p>
+                </div>
+
+                <button class="register-btn" type="submit">
+                    Create Account &rarr;
+                </button>
+            </form>
+
+            <p class="login-text">
+                Already registered?
+                <a href="login.html">Sign in</a>
+            </p>
+
+            <div class="mobile-footer">
+                Student Online Test &copy; 2026
+            </div>
+        </section>
+
+    </main>
+
+    <script>
+        const password = document.getElementById("password");
+        const toggleButton = document.getElementById("togglePassword");
+
+        toggleButton.addEventListener("click", function () {
+            const showing = password.type === "password";
+
+            password.type = showing ? "text" : "password";
+            toggleButton.textContent = showing ? "Hide" : "Show";
+            toggleButton.setAttribute("aria-pressed", String(showing));
+        });
+    </script>
+</body>
+</html>

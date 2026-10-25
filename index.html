@@ -1,0 +1,727 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Student Online Test | Student Online Test</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', Arial, sans-serif;
+        }
+
+        :root {
+            --bg: #090b14;
+            --panel: #111522;
+            --border: #272d41;
+            --text: #f2f4ff;
+            --muted: #929bb5;
+            --purple: #8b5cf6;
+            --cyan: #22d3ee;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            min-height: 100vh;
+            color: var(--text);
+            background:
+                radial-gradient(ellipse at 50% 0%, #26164d 0%, transparent 42%),
+                radial-gradient(ellipse at 100% 65%, #102c3c 0%, transparent 30%),
+                var(--bg);
+        }
+
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            min-height: 76px;
+            padding: 15px 7%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+            border-bottom: 1px solid #272d4180;
+            background: rgba(9, 11, 20, .88);
+            backdrop-filter: blur(18px);
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: var(--text);
+            text-decoration: none;
+            font-size: 21px;
+            font-weight: 800;
+            letter-spacing: -0.8px;
+        }
+
+        .brand-icon {
+            display: grid;
+            place-items: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 13px;
+            background: linear-gradient(135deg, var(--purple), #5b21b6);
+            box-shadow: 0 5px 22px #8b5cf640;
+            color: white;
+        }
+
+        nav {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+        }
+
+        nav a {
+            color: #b4bdd3;
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: 500;
+            transition: color .2s;
+        }
+
+        nav a:hover {
+            color: white;
+        }
+
+        nav .nav-register {
+            padding: 11px 18px;
+            border: 1px solid #8b5cf66b;
+            border-radius: 9px;
+            background: #8b5cf61a;
+            color: #ddd6fe;
+        }
+
+        nav .nav-register:hover {
+            background: #8b5cf633;
+        }
+
+        .hero {
+            position: relative;
+            max-width: 1100px;
+            margin: auto;
+            padding: 105px 24px 90px;
+            text-align: center;
+        }
+
+        .announcement {
+            display: inline-flex;
+            align-items: center;
+            gap: 9px;
+            padding: 9px 15px;
+            border: 1px solid #8b5cf640;
+            border-radius: 30px;
+            background: #8b5cf612;
+            color: #d5c8ff;
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: .3px;
+        }
+
+        .announcement-dot {
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: var(--cyan);
+            box-shadow: 0 0 12px var(--cyan);
+        }
+
+        .hero h1 {
+            max-width: 900px;
+            margin: 28px auto 22px;
+            font-size: clamp(38px, 6.5vw, 72px);
+            line-height: 1.1;
+            font-weight: 800;
+            letter-spacing: -3px;
+        }
+
+        .gradient-text {
+            background: linear-gradient(95deg, #a78bfa, #22d3ee);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .hero p {
+            max-width: 620px;
+            margin: 0 auto;
+            color: var(--muted);
+            font-size: 16px;
+            line-height: 1.9;
+        }
+
+        .hero-actions {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 14px;
+            margin-top: 35px;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            min-height: 49px;
+            padding: 14px 24px;
+            border: 1px solid transparent;
+            border-radius: 10px;
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: 700;
+            transition: transform .2s, background .2s, border-color .2s;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+        }
+
+        .btn-primary {
+            background: linear-gradient(100deg, #8b5cf6, #7048ed);
+            color: white;
+            box-shadow: 0 8px 30px #8b5cf633;
+        }
+
+        .btn-primary:hover {
+            box-shadow: 0 10px 35px #8b5cf655;
+        }
+
+        .btn-secondary {
+            border-color: #343a50;
+            background: #ffffff06;
+            color: #e2e7f8;
+        }
+
+        .btn-secondary:hover {
+            border-color: #8b5cf6;
+            background: #8b5cf610;
+        }
+
+        .trust-note {
+            margin-top: 24px;
+            color: #77819c;
+            font-size: 11px;
+        }
+
+        .preview {
+            max-width: 830px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .preview-window {
+            overflow: hidden;
+            border: 1px solid #35304f;
+            border-radius: 17px;
+            background: linear-gradient(145deg, #171a2b, #0e1220);
+            box-shadow: 0 30px 100px #00000055, 0 0 60px #8b5cf615;
+            transform: perspective(1000px) rotateX(2deg);
+        }
+
+        .window-bar {
+            display: flex;
+            align-items: center;
+            gap: 7px;
+            padding: 15px 18px;
+            border-bottom: 1px solid var(--border);
+            background: #ffffff03;
+        }
+
+        .window-dot {
+            width: 9px;
+            height: 9px;
+            border-radius: 50%;
+            background: #454b62;
+        }
+
+        .window-title {
+            margin-left: 8px;
+            color: #929bb5;
+            font-size: 10px;
+        }
+
+        .preview-content {
+            padding: 25px;
+            text-align: left;
+        }
+
+        .preview-heading {
+            margin-bottom: 20px;
+        }
+
+        .preview-heading strong {
+            font-size: 17px;
+        }
+
+        .preview-heading p {
+            margin-top: 6px;
+            color: var(--muted);
+            font-size: 11px;
+        }
+
+        .preview-stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 14px;
+        }
+
+        .preview-stat {
+            padding: 19px;
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            background: #ffffff04;
+        }
+
+        .preview-stat span {
+            display: block;
+            color: var(--muted);
+            font-size: 10px;
+        }
+
+        .preview-stat strong {
+            display: block;
+            margin-top: 12px;
+            font-size: 23px;
+            letter-spacing: -.7px;
+        }
+
+        .preview-stat:nth-child(1) strong {
+            color: #c4b5fd;
+        }
+
+        .preview-stat:nth-child(2) strong {
+            color: var(--cyan);
+        }
+
+        .preview-stat:nth-child(3) strong {
+            color: #86efac;
+        }
+
+        .preview-bottom {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 15px;
+            margin-top: 15px;
+            padding: 15px 18px;
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            background: #ffffff04;
+        }
+
+        .preview-bottom span {
+            color: var(--muted);
+            font-size: 11px;
+        }
+
+        .progress {
+            width: 35%;
+            height: 6px;
+            overflow: hidden;
+            border-radius: 10px;
+            background: #30364c;
+        }
+
+        .progress-fill {
+            width: 75%;
+            height: 100%;
+            border-radius: 10px;
+            background: linear-gradient(90deg, var(--purple), var(--cyan));
+        }
+
+        .features-section {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 100px 24px 85px;
+        }
+
+        .section-heading {
+            margin-bottom: 38px;
+            text-align: center;
+        }
+
+        .eyebrow {
+            color: var(--cyan);
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .section-heading h2 {
+            margin-top: 13px;
+            font-size: clamp(27px, 4vw, 38px);
+            letter-spacing: -1.2px;
+        }
+
+        .section-heading p {
+            max-width: 530px;
+            margin: 13px auto 0;
+            color: var(--muted);
+            font-size: 13px;
+            line-height: 1.8;
+        }
+
+        .features {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 20px;
+        }
+
+        .feature-card {
+            padding: 28px;
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            background: linear-gradient(145deg, #151a2a, #0f1320);
+            transition: transform .25s, border-color .25s;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            border-color: #8b5cf666;
+        }
+
+        .feature-icon {
+            display: grid;
+            place-items: center;
+            width: 48px;
+            height: 48px;
+            margin-bottom: 23px;
+            border: 1px solid #8b5cf630;
+            border-radius: 14px;
+            background: #8b5cf618;
+            color: #c4b5fd;
+            font-size: 22px;
+        }
+
+        .feature-card:nth-child(2) .feature-icon {
+            border-color: #22d3ee30;
+            background: #22d3ee12;
+            color: var(--cyan);
+        }
+
+        .feature-card:nth-child(3) .feature-icon {
+            border-color: #22c55e30;
+            background: #22c55e12;
+            color: #86efac;
+        }
+
+        .feature-card h3 {
+            margin-bottom: 12px;
+            font-size: 16px;
+        }
+
+        .feature-card p {
+            color: var(--muted);
+            font-size: 12px;
+            line-height: 1.9;
+        }
+
+        .cta {
+            max-width: 1050px;
+            margin: 0 auto 80px;
+            padding: 0 24px;
+        }
+
+        .cta-inner {
+            padding: 45px 25px;
+            border: 1px solid #8b5cf640;
+            border-radius: 20px;
+            background:
+                radial-gradient(ellipse at 50% 100%, #8b5cf625, transparent 65%),
+                #111522;
+            text-align: center;
+        }
+
+        .cta-inner h2 {
+            font-size: clamp(24px, 4vw, 34px);
+            letter-spacing: -1px;
+        }
+
+        .cta-inner p {
+            margin-top: 13px;
+            color: var(--muted);
+            font-size: 13px;
+            line-height: 1.8;
+        }
+
+        .cta-inner .btn {
+            margin-top: 25px;
+        }
+
+        footer {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 15px;
+            padding: 25px 7%;
+            border-top: 1px solid var(--border);
+            color: #77819c;
+            font-size: 11px;
+        }
+
+        .footer-brand {
+            color: #c4b5fd;
+            font-weight: 700;
+        }
+
+        @media (max-width: 750px) {
+            header {
+                padding: 14px 5%;
+            }
+
+            nav {
+                gap: 15px;
+            }
+
+            nav a {
+                font-size: 11px;
+            }
+
+            .hero {
+                padding-top: 75px;
+            }
+
+            .hero h1 {
+                letter-spacing: -1.8px;
+            }
+
+            .features {
+                grid-template-columns: 1fr;
+            }
+
+            .feature-card {
+                padding: 24px;
+            }
+
+            .features-section {
+                padding-top: 75px;
+            }
+
+            .preview-stats {
+                gap: 8px;
+            }
+
+            .preview-stat {
+                padding: 12px;
+            }
+
+            .preview-stat strong {
+                font-size: 19px;
+            }
+        }
+
+        @media (max-width: 450px) {
+            .brand {
+                font-size: 17px;
+            }
+
+            .brand-icon {
+                width: 35px;
+                height: 35px;
+            }
+
+            nav {
+                gap: 11px;
+            }
+
+            nav .nav-register {
+                padding: 9px 10px;
+            }
+
+            .hero p {
+                font-size: 14px;
+            }
+
+            .preview-content {
+                padding: 15px;
+            }
+
+            .preview-stat span {
+                font-size: 9px;
+            }
+
+            .preview-stat strong {
+                font-size: 16px;
+            }
+
+            .preview-bottom {
+                padding: 12px;
+            }
+
+            footer {
+                justify-content: center;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <a href="index.html" class="brand">
+            <span class="brand-icon">E</span>
+            <span>Student Online Test</span>
+        </a>
+
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="login.html">Login</a>
+            <a href="register.html" class="nav-register">Get Started ↗</a>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="announcement">
+                <span class="announcement-dot"></span>
+                STUDENT ONLINE TEST & GRADE EVALUATION
+            </div>
+
+            <h1>
+                Test your knowledge.<br>
+                <span class="gradient-text">Track your progress.</span>
+            </h1>
+
+            <p>
+                Take online assessments, receive your results after submission,
+                and understand your performance through a simple testing platform
+                designed for students.
+            </p>
+
+            <div class="hero-actions">
+                <a href="login.html" class="btn btn-primary">
+                    Student Login <span>→</span>
+                </a>
+
+                <a href="register.html" class="btn btn-secondary">
+                    Create an Account <span>↗</span>
+                </a>
+            </div>
+
+            <div class="trust-note">
+                A simple platform for online assessments and performance tracking.
+            </div>
+        </section>
+
+        <section class="preview" aria-label="Illustrative dashboard preview">
+            <div class="preview-window">
+                <div class="window-bar">
+                    <span class="window-dot"></span>
+                    <span class="window-dot"></span>
+                    <span class="window-dot"></span>
+                    <span class="window-title">Student Online Test / Dashboard Preview</span>
+                </div>
+
+                <div class="preview-content">
+                    <div class="preview-heading">
+                        <strong>Your learning overview</strong>
+                        <p>An illustrative preview of the platform</p>
+                    </div>
+
+                    <div class="preview-stats">
+                        <div class="preview-stat">
+                            <span>Available Tests</span>
+                            <strong>Explore</strong>
+                        </div>
+
+                        <div class="preview-stat">
+                            <span>Results</span>
+                            <strong>Review</strong>
+                        </div>
+
+                        <div class="preview-stat">
+                            <span>Performance</span>
+                            <strong>Improve</strong>
+                        </div>
+                    </div>
+
+                    <div class="preview-bottom">
+                        <span>Keep learning, one test at a time</span>
+                        <div class="progress">
+                            <div class="progress-fill"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="features-section" id="features">
+            <div class="section-heading">
+                <div class="eyebrow">Platform features</div>
+                <h2>Everything you need to get started</h2>
+                <p>
+                    Access assessments, check your results, and understand
+                    your scores through one straightforward platform.
+                </p>
+            </div>
+
+            <div class="features">
+                <article class="feature-card">
+                    <div class="feature-icon">▤</div>
+                    <h3>Online Tests</h3>
+                    <p>
+                        Access available tests through your student account
+                        and answer multiple-choice questions online.
+                    </p>
+                </article>
+
+                <article class="feature-card">
+                    <div class="feature-icon">↗</div>
+                    <h3>Results & Scores</h3>
+                    <p>
+                        Review your test score after submission when the
+                        assessment has been evaluated.
+                    </p>
+                </article>
+
+                <article class="feature-card">
+                    <div class="feature-icon">✓</div>
+                    <h3>Grade Evaluation</h3>
+                    <p>
+                        Use the system's grading features to understand
+                        your marks and assess your performance.
+                    </p>
+                </article>
+            </div>
+        </section>
+
+        <section class="cta">
+            <div class="cta-inner">
+                <h2>Ready to begin?</h2>
+                <p>
+                    Sign in to your account or register to get started
+                    with the online testing platform.
+                </p>
+
+                <a href="register.html" class="btn btn-primary">
+                    Get Started <span>→</span>
+                </a>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <span class="footer-brand">Student Online Test</span>
+        <span>© 2026 Student Online Test and Grade Evaluation System</span>
+    </footer>
+
+</body>
+</html>

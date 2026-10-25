@@ -1,0 +1,560 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Test | Student Online Test</title>
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+        :root {
+            --bg: #090d19;
+            --panel: #11182a;
+            --panel2: #151e32;
+            --border: #28324a;
+            --text: #f1f5ff;
+            --muted: #929db5;
+            --purple: #9270ff;
+            --cyan: #46d9e9;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', Arial, sans-serif;
+            background:
+                radial-gradient(ellipse at 50% 0%, #33226825, transparent 50%),
+                var(--bg);
+            color: var(--text);
+            min-height: 100vh;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        header {
+            min-height: 78px;
+            padding: 15px 6%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 15px;
+            background: #0d1221;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .brand-icon {
+            height: 41px;
+            width: 41px;
+            display: grid;
+            place-items: center;
+            border-radius: 12px;
+            background: linear-gradient(135deg, #a58aff, #6545d9);
+            font-weight: 800;
+            font-size: 21px;
+            box-shadow: 0 5px 22px #805cf530;
+        }
+
+        .brand h1 {
+            font-size: 18px;
+            letter-spacing: -0.5px;
+        }
+
+        .brand p {
+            color: var(--muted);
+            font-size: 10px;
+            letter-spacing: 1.4px;
+            margin-top: 4px;
+        }
+
+        .header-link {
+            color: #c6b8ff;
+            font-size: 12px;
+            font-weight: 600;
+            padding: 11px 15px;
+            border: 1px solid #9270ff45;
+            border-radius: 9px;
+            transition: 0.2s;
+        }
+
+        .header-link:hover {
+            background: #9270ff19;
+            border-color: var(--purple);
+        }
+
+        .page {
+            width: 100%;
+            max-width: 850px;
+            padding: 42px 22px 60px;
+            margin: auto;
+        }
+
+        .breadcrumb {
+            color: var(--muted);
+            font-size: 12px;
+            margin-bottom: 25px;
+        }
+
+        .breadcrumb a:hover {
+            color: white;
+        }
+
+        .breadcrumb span {
+            color: var(--purple);
+        }
+
+        .intro {
+            margin-bottom: 28px;
+        }
+
+        .eyebrow {
+            color: #b9a7ff;
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            margin-bottom: 13px;
+        }
+
+        .intro h2 {
+            font-size: clamp(26px, 4vw, 34px);
+            letter-spacing: -1.1px;
+            margin-bottom: 12px;
+        }
+
+        .intro h2 span {
+            color: var(--purple);
+        }
+
+        .intro p {
+            color: var(--muted);
+            font-size: 13px;
+            line-height: 1.8;
+            max-width: 570px;
+        }
+
+        .form-card {
+            background: linear-gradient(145deg, #131b2e, #101626);
+            border: 1px solid var(--border);
+            border-radius: 18px;
+            overflow: hidden;
+            box-shadow: 0 20px 60px #00000020;
+        }
+
+        .card-heading {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 24px 28px;
+            border-bottom: 1px solid var(--border);
+            background: #ffffff03;
+        }
+
+        .heading-icon {
+            width: 45px;
+            height: 45px;
+            display: grid;
+            place-items: center;
+            border-radius: 13px;
+            background: #9270ff1a;
+            border: 1px solid #9270ff38;
+            color: #c3b3ff;
+            font-size: 22px;
+        }
+
+        .card-heading h3 {
+            font-size: 15px;
+            margin-bottom: 5px;
+        }
+
+        .card-heading p {
+            color: var(--muted);
+            font-size: 11px;
+        }
+
+        .form-body {
+            padding: 28px;
+        }
+
+        .field {
+            margin-bottom: 24px;
+        }
+
+        label {
+            display: block;
+            color: #e2e8f6;
+            font-size: 12px;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .required {
+            color: #b09aff;
+        }
+
+        input,
+        textarea {
+            display: block;
+            width: 100%;
+            background: #0b1120;
+            border: 1px solid #303a53;
+            border-radius: 10px;
+            padding: 14px 15px;
+            color: var(--text);
+            font: inherit;
+            font-size: 13px;
+            transition: border-color 0.2s, box-shadow 0.2s;
+        }
+
+        input::placeholder,
+        textarea::placeholder {
+            color: #64718a;
+        }
+
+        input:hover,
+        textarea:hover {
+            border-color: #4a5673;
+        }
+
+        input:focus,
+        textarea:focus {
+            outline: none;
+            border-color: var(--purple);
+            box-shadow: 0 0 0 3px #9270ff19;
+        }
+
+        textarea {
+            min-height: 125px;
+            resize: vertical;
+            line-height: 1.7;
+        }
+
+        .hint {
+            color: #77849e;
+            font-size: 11px;
+            margin-top: 9px;
+            line-height: 1.6;
+        }
+
+        .duration-wrap {
+            position: relative;
+        }
+
+        .duration-wrap input {
+            padding-right: 100px;
+        }
+
+        .duration-suffix {
+            position: absolute;
+            right: 14px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--muted);
+            font-size: 11px;
+            pointer-events: none;
+        }
+
+        .info-box {
+            display: flex;
+            gap: 12px;
+            padding: 15px;
+            border-radius: 11px;
+            border: 1px solid #46d9e927;
+            background: #46d9e908;
+            margin-bottom: 25px;
+        }
+
+        .info-icon {
+            color: var(--cyan);
+            font-size: 17px;
+        }
+
+        .info-box p {
+            color: #a8b6cc;
+            font-size: 11px;
+            line-height: 1.8;
+        }
+
+        .info-box strong {
+            color: #dceaff;
+        }
+
+        .actions {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+        }
+
+        button {
+            flex: 1;
+            min-height: 48px;
+            border: none;
+            border-radius: 10px;
+            background: linear-gradient(110deg, #9574ff, #7049e5);
+            color: white;
+            font-family: inherit;
+            font-size: 13px;
+            font-weight: 700;
+            cursor: pointer;
+            box-shadow: 0 6px 22px #805cf526;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 9px 28px #805cf540;
+        }
+
+        button:active {
+            transform: translateY(0);
+        }
+
+        .cancel {
+            min-height: 48px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0 19px;
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            color: #bac4d9;
+            font-size: 12px;
+            font-weight: 600;
+            transition: 0.2s;
+        }
+
+        .cancel:hover {
+            background: var(--panel2);
+            color: white;
+        }
+
+        .footer {
+            text-align: center;
+            color: #63708a;
+            font-size: 10px;
+            margin-top: 28px;
+            line-height: 1.8;
+        }
+
+        .footer span {
+            color: var(--purple);
+        }
+
+        @media (max-width: 520px) {
+            header {
+                padding: 15px 17px;
+            }
+
+            .brand h1 {
+                font-size: 16px;
+            }
+
+            .header-link {
+                font-size: 11px;
+                padding: 10px;
+            }
+
+            .page {
+                padding: 29px 15px 40px;
+            }
+
+            .card-heading {
+                padding: 20px;
+            }
+
+            .form-body {
+                padding: 21px 18px;
+            }
+
+            .actions {
+                flex-direction: column;
+            }
+
+            button,
+            .cancel {
+                width: 100%;
+                flex: auto;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                transition: none !important;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <a href="admin-dashboard.html" class="brand">
+        <div class="brand-icon">S</div>
+        <div>
+            <h1>Student Online Test<span style="color:#9270ff">.</span></h1>
+            <p>ONLINE EXAMINATION</p>
+        </div>
+    </a>
+
+    <a href="admin-dashboard.html" class="header-link">
+        ← Dashboard
+    </a>
+</header>
+
+<main class="page">
+
+    <div class="breadcrumb">
+        <a href="admin-dashboard.html">Workspace</a>
+        &nbsp; / &nbsp; <span>Create Test</span>
+    </div>
+
+    <section class="intro">
+        <div class="eyebrow">✦ EXAM MANAGEMENT</div>
+        <h2>Create a new <span>test.</span></h2>
+        <p>
+            Set up your next examination by providing its basic details.
+            Choose the maximum number of questions before adding them.
+        </p>
+    </section>
+
+    <section class="form-card">
+
+        <div class="card-heading">
+            <div class="heading-icon">✚</div>
+            <div>
+                <h3>Test Information</h3>
+                <p>Enter the details for your new examination.</p>
+            </div>
+        </div>
+
+        <div class="form-body">
+
+            <form action="CreateTestServlet" method="post">
+
+                <div class="field">
+                    <label for="title">
+                        Test Name <span class="required">*</span>
+                    </label>
+
+                    <input
+                        type="text"
+                        id="title"
+                        name="title"
+                        placeholder="e.g. Java Programming Test"
+                        maxlength="150"
+                        required
+                    >
+
+                    <p class="hint">
+                        Choose a clear name that students can easily recognize.
+                    </p>
+                </div>
+
+                <div class="field">
+                    <label for="description">
+                        Description <span class="required">*</span>
+                    </label>
+
+                    <textarea
+                        id="description"
+                        name="description"
+                        placeholder="Describe the test, its topics, and what students should expect..."
+                        required
+                    ></textarea>
+
+                    <p class="hint">
+                        Briefly explain the purpose or subject of this examination.
+                    </p>
+                </div>
+
+                <div class="field">
+                    <label for="duration">
+                        Test Duration <span class="required">*</span>
+                    </label>
+
+                    <div class="duration-wrap">
+                        <input
+                            type="number"
+                            id="duration"
+                            name="duration"
+                            placeholder="30"
+                            min="1"
+                            max="1440"
+                            step="1"
+                            required
+                        >
+                        <span class="duration-suffix">Minutes</span>
+                    </div>
+
+                    <p class="hint">
+                        Enter a duration between 1 and 1440 minutes.
+                    </p>
+                </div>
+
+                <!-- NEW: Question limit field -->
+                <div class="field">
+                    <label for="questionLimit">
+                        Maximum Number of Questions
+                        <span class="required">*</span>
+                    </label>
+
+                    <input
+                        type="number"
+                        id="questionLimit"
+                        name="questionLimit"
+                        placeholder="e.g. 20"
+                        min="1"
+                        max="200"
+                        step="1"
+                        required
+                    >
+
+                    <p class="hint">
+                        Set how many questions this test can contain (1–200).
+                    </p>
+                </div>
+
+                <div class="info-box">
+                    <div class="info-icon">ⓘ</div>
+                    <p>
+                        <strong>What's next?</strong><br>
+                        After creating the test, you can add multiple-choice
+                        questions up to the configured question limit.
+                    </p>
+                </div>
+
+                <div class="actions">
+                    <button type="submit">Create Test &nbsp; →</button>
+
+                    <a href="admin-dashboard.html" class="cancel">
+                        Cancel
+                    </a>
+                </div>
+
+            </form>
+
+        </div>
+    </section>
+
+    <footer class="footer">
+        © 2026 Student Online Test · Student Online Test System<br>
+        Designed with <span>♥</span> for better learning
+    </footer>
+
+</main>
+
+</body>
+</html>

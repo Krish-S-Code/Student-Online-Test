@@ -1,0 +1,381 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Student Dashboard | Student Online Test</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: "Segoe UI", Arial, sans-serif;
+            min-height: 100vh;
+            color: #f5f3ff;
+            background:
+                radial-gradient(ellipse at 10% 10%, #49258b38, transparent 40%),
+                radial-gradient(ellipse at 90% 80%, #07598530, transparent 40%),
+                #090b16;
+        }
+
+        header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+            flex-wrap: wrap;
+            padding: 22px 7%;
+            background: #111426d9;
+            border-bottom: 1px solid #ffffff12;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 13px;
+        }
+
+        .logo {
+            width: 44px;
+            height: 44px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 13px;
+            font-size: 22px;
+            font-weight: 800;
+            color: white;
+            background: linear-gradient(135deg, #8b5cf6, #06b6d4);
+        }
+
+        header h1 {
+            font-size: 20px;
+            font-weight: 750;
+            letter-spacing: -0.4px;
+        }
+
+        header h1 span {
+            color: #a78bfa;
+        }
+
+        .logout {
+            text-decoration: none;
+            color: #e4e4f2;
+            border: 1px solid #383a52;
+            padding: 10px 18px;
+            border-radius: 10px;
+            font-size: 13px;
+            font-weight: 650;
+            transition: 0.2s;
+        }
+
+        .logout:hover {
+            color: white;
+            border-color: #a78bfa;
+            background: #8b5cf61c;
+        }
+
+        .container {
+            max-width: 1150px;
+            margin: 0 auto;
+            padding: 48px 25px 20px;
+        }
+
+        .welcome {
+            margin-bottom: 35px;
+        }
+
+        .eyebrow {
+            display: inline-block;
+            margin-bottom: 15px;
+            padding: 7px 12px;
+            border: 1px solid #8b5cf644;
+            border-radius: 30px;
+            background: #8b5cf615;
+            color: #c4b5fd;
+            font-size: 11px;
+            font-weight: 750;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .welcome h2 {
+            font-size: clamp(28px, 4vw, 38px);
+            line-height: 1.25;
+            letter-spacing: -1px;
+            margin-bottom: 12px;
+        }
+
+        .welcome h2 span {
+            color: #a78bfa;
+        }
+
+        .welcome p {
+            max-width: 600px;
+            color: #a1a1b5;
+            font-size: 15px;
+            line-height: 1.8;
+        }
+
+        .section-heading {
+            margin-bottom: 20px;
+            font-size: 18px;
+            font-weight: 700;
+        }
+
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 22px;
+        }
+
+        .card {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            padding: 27px;
+            min-height: 300px;
+            border: 1px solid #ffffff14;
+            border-radius: 18px;
+            background: linear-gradient(145deg, #191c31, #121525);
+            box-shadow: 0 15px 40px #0002;
+            transition: transform 0.25s, border-color 0.25s;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            border-color: #8b5cf666;
+        }
+
+        .card-icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 52px;
+            height: 52px;
+            margin-bottom: 22px;
+            border-radius: 15px;
+            background: #8b5cf622;
+            border: 1px solid #8b5cf633;
+            color: #c4b5fd;
+            font-size: 24px;
+        }
+
+        .card:nth-child(2) .card-icon {
+            color: #67e8f9;
+            background: #06b6d422;
+            border-color: #06b6d433;
+        }
+
+        .card:nth-child(3) .card-icon {
+            color: #86efac;
+            background: #22c55e1a;
+            border-color: #22c55e33;
+        }
+
+        .card h3 {
+            font-size: 19px;
+            margin-bottom: 12px;
+        }
+
+        .card p {
+            color: #a1a1b5;
+            font-size: 13px;
+            line-height: 1.8;
+            margin-bottom: 24px;
+            flex-grow: 1;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 12px 17px;
+            border-radius: 9px;
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: 700;
+            color: white;
+            background: linear-gradient(100deg, #7c3aed, #6366f1);
+            transition: filter 0.2s, transform 0.2s;
+        }
+
+        .btn:hover {
+            filter: brightness(1.15);
+            transform: translateY(-1px);
+        }
+
+        .profile-btn {
+            background: #252a40;
+            border: 1px solid #41445d;
+        }
+
+        .profile-btn:hover {
+            background: #303650;
+        }
+
+        .note {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            margin-top: 30px;
+            padding: 17px 19px;
+            border: 1px solid #06b6d422;
+            border-radius: 13px;
+            background: #06b6d40b;
+            color: #a5f3fc;
+            font-size: 13px;
+            line-height: 1.7;
+        }
+
+        .note-icon {
+            font-size: 17px;
+        }
+
+        footer {
+            margin-top: 45px;
+            padding: 25px 15px;
+            border-top: 1px solid #ffffff0d;
+            text-align: center;
+            color: #777990;
+            font-size: 12px;
+            line-height: 1.8;
+        }
+
+        @media (max-width: 850px) {
+            .cards {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+
+            .card:last-child {
+                grid-column: 1 / -1;
+            }
+        }
+
+        @media (max-width: 560px) {
+            header {
+                padding: 18px 20px;
+            }
+
+            header h1 {
+                font-size: 16px;
+            }
+
+            .logo {
+                width: 38px;
+                height: 38px;
+            }
+
+            .container {
+                padding: 35px 18px 15px;
+            }
+
+            .cards {
+                grid-template-columns: 1fr;
+            }
+
+            .card:last-child {
+                grid-column: auto;
+            }
+
+            .card {
+                min-height: 260px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <div class="brand">
+            <div class="logo">S</div>
+            <h1>Student <span>Online Test</span></h1>
+        </div>
+
+        <a class="logout" href="index.html">Logout ↗</a>
+    </header>
+
+    <main class="container">
+
+        <section class="welcome">
+            <span class="eyebrow">Student Portal</span>
+            <h2>Welcome back, <span>Student!</span></h2>
+            <p>
+                Your learning space, all in one place.
+                Take available tests, review your results,
+                and access your student profile from your dashboard.
+            </p>
+        </section>
+
+        <h2 class="section-heading">Your Workspace</h2>
+
+        <section class="cards">
+
+            <article class="card">
+                <div class="card-icon" aria-hidden="true">✎</div>
+                <h3>Available Tests</h3>
+                <p>
+                    Explore the tests available in the system.
+                    Check the questions and allotted time,
+                    then get started with your assessment.
+                </p>
+                <a class="btn" href="AvailableTestsServlet">
+                    Take a Test <span aria-hidden="true">→</span>
+                </a>
+            </article>
+
+            <article class="card">
+                <div class="card-icon" aria-hidden="true">▤</div>
+                <h3>My Results</h3>
+                <p>
+                    Review your test scores and performance
+                    using the results section. Track your
+                    progress across your assessments.
+                </p>
+                <a class="btn" href="result.html">
+                    View Results <span aria-hidden="true">→</span>
+                </a>
+            </article>
+
+            <article class="card">
+                <div class="card-icon" aria-hidden="true">♙</div>
+                <h3>My Profile</h3>
+                <p>
+                    View your student account information,
+                    including your ID, name, email, role,
+                    and account creation date.
+                </p>
+                <a class="btn profile-btn" href="ProfileServlet">
+                    View Profile <span aria-hidden="true">→</span>
+                </a>
+            </article>
+
+        </section>
+
+        <div class="note">
+            <span class="note-icon" aria-hidden="true">ⓘ</span>
+            <p>
+                <strong>Study tip:</strong>
+                Read each question carefully and check the
+                allotted test duration before you begin.
+            </p>
+        </div>
+
+    </main>
+
+    <footer>
+        Student Online Test and Grade Evaluation System
+        <br>
+        © 2026 Student Online Test
+    </footer>
+
+</body>
+</html>
